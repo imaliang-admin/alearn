@@ -1,7 +1,8 @@
 ---
 home: true
+heroImage: false
 actionText: 开始学习 →
-actionLink: /document/creating-project
+actionLink: /java/
 footer: false
 editLink: false
 ---
