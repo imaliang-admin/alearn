@@ -45,15 +45,15 @@ module.exports = {
         sidebar: {
             "/java": [
                 "/java/",
-                "/document/installation",
-                {
-                    title: "开始",
-                    collapsable: true,
-                    children: [
-                        "/document/creating-project",
-                        "/document/cli-service"
-                    ],
-                },
+                // "/document/installation",
+                // {
+                //     title: "开始",
+                //     collapsable: true,
+                //     children: [
+                //         "/document/creating-project",
+                //         "/document/cli-service"
+                //     ],
+                // },
             ],
             "/thread": [
                 {
