@@ -90,11 +90,11 @@ module.exports = {
             duration: 2000,
             showInMobile: false
         }],
-        ["@vuepress/last-updated", {
-            transformer: (timestamp, lang) => {
-                return moment(timestamp).tz('Asia/Shanghai').locale(lang).format('yyyy-MM-DD HH:mm:ss')
-            }
-        }]
+        // ["@vuepress/last-updated", {
+        //     transformer: (timestamp, lang) => {
+        //         return moment(timestamp).tz('Asia/Shanghai').locale(lang).format('yyyy-MM-DD HH:mm:ss')
+        //     }
+        // }]
     ],
     extendMarkdown: (md) => {
         md.use(require("markdown-it-mark"));
