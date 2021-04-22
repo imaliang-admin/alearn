@@ -5,38 +5,15 @@ on:
       - dev
 
 jobs:
-  build:
-
+  publish-docs:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Download Source file 🛎️
-        uses: actions/checkout@v2
-        with:
-          ref: source
-
-      - name: Prepare Node env 🔧
-        uses: actions/setup-node@v1
-        with:
-          node-version: "10.x"
-
-      - name: Set env 🔧
+      - uses: actions/checkout@v2
+      - uses: imaegoo/vuepress-deploy@master
         env:
-          ACTION_DEPLOY_KEY: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-      - name: Vuepress Deploy 🚀
-        run: |
-          yarn
-          yarn run docs:build
-          cp README.md docs/.vuepress/dist
-          cd docs/.vuepress/dist
-          git config --global user.name 'aliang'
-          git config --global user.email 'aliang@github.com'
-          git init
-          git add -A
-          git commit -m 'Update'
-          git push -f git@github.com:imaliang/alearn.git gh-pages
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          TARGET_REPO: imaegoo/twikoo
+          TARGET_BRANCH: gh-pages
+          BUILD_SCRIPT: yarn global add vuepress@1.8.2 && vuepress build docs
+          BUILD_DIR: docs/.vuepress/dist
+          CNAME: learn.aliang.link
