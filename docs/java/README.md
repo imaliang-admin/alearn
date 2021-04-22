@@ -11,7 +11,7 @@ alearn 是一个Java方向的编程知识整理平台，便于自己查询与学
 ```java
     public void addLoginHistory(Integer merchantId, HttpServletRequest request) {
         String ip = IPUtils.getIp(request);
-        LoginHistory loginHistory = new LoginHistory();
+        LoginHistory loginHistory = new LoginHistory();//
         loginHistory.setLoginIp(ip);
         loginHistory.setLoginCity("未知");
         loginHistory.setMerchantId(merchantId);
