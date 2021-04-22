@@ -17,8 +17,12 @@
     "@vuepress/plugin-medium-zoom": "1.8.2",
     "@vuepress/plugin-nprogress": "^1.8.2",
     "markdown-it-mark": "^3.0.0",
-    "vuepress": "^1.8.2",
+    "vuepress": "^1.8.2"
+  },
+  "dependencies": {
     "@mr-hope/vuepress-plugin-copy-code": "^1.14.4",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
     "vuepress-theme-antdocs": "^1.2.2"
   }
 }
