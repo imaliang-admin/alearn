@@ -15,10 +15,7 @@ build/
 ### VS Code ###
 .vscode/
 
-
-.DS_Store
-Thumbs.db
-db.json
-*.log
+### 自定义 ###
 node_modules/
 .deploy*/
+yarn.lock
