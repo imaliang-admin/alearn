@@ -1,14 +1,19 @@
 {
   "name": "alearn",
   "version": "0.0.1",
-  "main": "index.js",
+  "description": "A Java oriented programming knowledge collation platform.",
+  "author": "aliang <aliang.link@foxmail.com> (https://github.com/imaliang)",
   "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imaliang/alearn.git"
+  },
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "deploy": "bash deploy.sh"
+    "docs:build": "vuepress build docs"
   },
   "devDependencies": {
     "@vuepress/plugin-active-header-links": "1.8.2",

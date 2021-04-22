@@ -17,5 +17,7 @@ build/
 
 ### 自定义 ###
 node_modules/
+docs/.vuepress/dist/
 .deploy*/
+package-lock.json
 yarn.lock
