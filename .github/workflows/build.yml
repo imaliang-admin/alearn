@@ -22,7 +22,7 @@ jobs:
 
       - name: Set env 🔧
         env:
-          ACTION_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          ACTION_DEPLOY_KEY: ${{ secrets.ACCESS_TOKEN }}
         run: |
           mkdir -p ~/.ssh/
           echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
