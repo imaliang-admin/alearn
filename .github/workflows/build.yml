@@ -3,22 +3,40 @@ on:
   push:
     branches:
       - dev
+
 jobs:
-  build-and-deploy:
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
-
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-        run: |
-          npm install
-          npm run build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.1
+      - name: Download Source file 🛎️
+        uses: actions/checkout@v2
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: .vuepress/dist # The folder the action should deploy.
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
-          BUILD_SCRIPT: npm install && npm run build
+          ref: source
+
+      - name: Prepare Node env 🔧
+        uses: actions/setup-node@v1
+        with:
+          node-version: "10.x"
+
+      - name: Set env 🔧
+        env:
+          ACTION_DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - name: Vuepress Deploy 🚀
+        run: |
+          yarn
+          yarn run docs:build
+          cp README.md docs/.vuepress/dist
+          cd docs/.vuepress/dist
+          git config --global user.name 'aliang'
+          git config --global user.email 'aliang@github.com'
+          git init
+          git add -A
+          git commit -m 'Update'
+          git push -f git@github.com:imaliang/alearn.git gh-pages
