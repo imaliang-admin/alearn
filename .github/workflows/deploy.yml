@@ -41,7 +41,7 @@ jobs:
 
       - name: Deploy To Tencent Server 🚀
         run: |
-          ftp -v -n ${{ secrets.FTP_IP }} <<EOF
+          ftp -i -v -n ${{ secrets.FTP_IP }} <<EOF
           user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}
           binary
           lcd docs/.vuepress/dist/
