@@ -44,7 +44,7 @@ jobs:
           server: ${{ secrets.FTP_IP }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: docs/.vuepress/dist/
+          local-dir: /docs/.vuepress/dist/
           server-dir: /alearn/
 
       - name: Print results ✏️
