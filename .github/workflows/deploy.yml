@@ -60,7 +60,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: docs/.vuepress/dist/
           server-dir: /alearn/
-          protocol: ftp
+          protocol: ftps
 
 #ftp -v -n 81.70.241.155 <<EOF \n user github WMsASz2aFFsXyaLh \n EOF
 #ftp -v -n 81.70.241.155 <<EOF user github WMsASz2aFFsXyaLh \n EOF
