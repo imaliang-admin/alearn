@@ -55,7 +55,7 @@ jobs:
       - name: Deploy To Tencent Server 🚀
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          server: ${{ secrets.FTP_IP }}
+          server: ts.aliang.link
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: docs/.vuepress/dist/
