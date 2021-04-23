@@ -52,15 +52,23 @@ jobs:
 #          EOF
 
 
+#      - name: Deploy To Tencent Server 🚀
+#        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+#        with:
+#          server: ts.aliang.link
+#          username: ${{ secrets.FTP_USERNAME }}
+#          password: ${{ secrets.FTP_PASSWORD }}
+#          local-dir: docs/.vuepress/dist/
+#          server-dir: /alearn/
+#          protocol: ftps
       - name: Deploy To Tencent Server 🚀
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: sebastianpopp/ftp-action@releases/v2
         with:
-          server: ts.aliang.link
-          username: ${{ secrets.FTP_USERNAME }}
+          host: ${{ secrets.FTP_IP }}
+          user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: docs/.vuepress/dist/
-          server-dir: /alearn/
-          protocol: ftps
+          localDir: "docs/.vuepress/dist/"
+          remoteDir: "/alearn/"
 
 #ftp -v -n 81.70.241.155 <<EOF \n user github WMsASz2aFFsXyaLh \n EOF
 #ftp -v -n 81.70.241.155 <<EOF user github WMsASz2aFFsXyaLh \n EOF
