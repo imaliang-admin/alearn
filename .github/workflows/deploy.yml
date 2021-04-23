@@ -39,13 +39,13 @@ jobs:
 #          git push -f git@github.com:imaliang/alearn.git master:gh-pages
 
 
-      - name: Deploy To Tx 🚀
+      - name: Deploy To Tencent Server 🚀
         run: |
           ftp -v -n ${{ secrets.FTP_IP }} <<EOF
           user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}
           binary
-          cd docs/.vuepress/dist/
-          lcd  /alearn/
+          lcd docs/.vuepress/dist/
+          cd  /alearn/
           mput *
           bye
           EOF
