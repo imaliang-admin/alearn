@@ -39,24 +39,25 @@ jobs:
 #          git push -f git@github.com:imaliang/alearn.git master:gh-pages
 
 
+#      - name: Deploy To Tencent Server 🚀
+#        run: |
+#          lftp ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_IP }}:21 <<EOF
+#          lcd docs/.vuepress/
+#          cd  /alearn/
+#          mirror -R dist
+#          bye
+#          EOF
+
+
       - name: Deploy To Tencent Server 🚀
-        run: |
-          lftp ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_IP }}:21 <<EOF
-          lcd docs/.vuepress/
-          cd  /alearn/
-          mirror -R dist
-          bye
-          EOF
-
-
-#      - name: Deploy To Tx 🚀
-#        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-#        with:
-#          server: ${{ secrets.FTP_IP }}
-#          username: ${{ secrets.FTP_USERNAME }}
-#          password: ${{ secrets.FTP_PASSWORD }}
-#          local-dir: docs/.vuepress/dist/
-#          server-dir: /alearn/
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.FTP_IP }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: docs/.vuepress/dist/
+          server-dir: /alearn/
+          protocol: ftp
 
 #ftp -v -n 81.70.241.155 <<EOF \n user github WMsASz2aFFsXyaLh \n EOF
 #ftp -v -n 81.70.241.155 <<EOF user github WMsASz2aFFsXyaLh \n EOF
@@ -73,3 +74,10 @@ jobs:
 #
 #               bye
 #               put  "D:\dev\abc"
+
+#lftp github:WMsASz2aFFsXyaLh@81.70.241.155:21 <<EOF
+#lcd /data/logs/
+#cd  /alearn/
+#mirror -R aaaa
+#bye
+#EOF
