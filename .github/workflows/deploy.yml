@@ -46,6 +46,10 @@ jobs:
           ftp -v -n ${{ secrets.FTP_IP }} <<EOF
           user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}
           put 'alearn.tar'
+          binary
+          cd /ftphome/uploadData
+          lcd  /ftphome/getUploadData
+          mput *
           bye
           EOF
 
@@ -59,20 +63,18 @@ jobs:
 #          local-dir: docs/.vuepress/dist/
 #          server-dir: /alearn/
 
-ftp -v -n 81.70.241.155 <<EOF
-user github WMsASz2aFFsXyaLh
-
-EOF
-
-
-               ftp 81.70.241.155 github WMsASz2aFFsXyaLh
-               ftp 81.70.241.155 -u github -p WMsASz2aFFsXyaLh
-               github
-               WMsASz2aFFsXyaLh
-
-               lftp github:WMsASz2aFFsXyaLh@81.70.241.155:21
-
-               ftp -nftp>open 81.70.241.155:21ftp>user github WMsASz2aFFsXyaLh
-
-               bye
-               put  "D:\dev\abc"
+#ftp -v -n 81.70.241.155 <<EOF \n user github WMsASz2aFFsXyaLh \n EOF
+#ftp -v -n 81.70.241.155 <<EOF user github WMsASz2aFFsXyaLh \n EOF
+#
+#
+#               ftp 81.70.241.155 github WMsASz2aFFsXyaLh
+#               ftp 81.70.241.155 -u github -p WMsASz2aFFsXyaLh
+#               github
+#               WMsASz2aFFsXyaLh
+#
+#               lftp github:WMsASz2aFFsXyaLh@81.70.241.155:21
+#
+#               ftp -nftp>open 81.70.241.155:21ftp>user github WMsASz2aFFsXyaLh
+#
+#               bye
+#               put  "D:\dev\abc"
