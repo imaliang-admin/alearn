@@ -46,10 +46,6 @@ jobs:
           ftp -v -n ${{ secrets.FTP_IP }} <<EOF
           user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}
           put 'alearn.tar'
-          binary
-          cd /ftphome/uploadData
-          lcd  /ftphome/getUploadData
-          mput *
           bye
           EOF
 
