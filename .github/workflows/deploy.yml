@@ -46,7 +46,7 @@ jobs:
           binary
           lcd docs/.vuepress/dist/
           cd  /alearn/
-          put -r 'docs/.vuepress/dist/'
+          mput -r *
           bye
           EOF
 
