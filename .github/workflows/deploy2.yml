@@ -6,7 +6,7 @@ on:
       - dev
 
 jobs:
-  build:
+  alearn-build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -19,7 +19,7 @@ jobs:
           cp README.md docs/.vuepress/dist
           cp CNAME docs/.vuepress/dist
 
-      - name: Set env
+      - name: Set env 🔧
         env:
           ACTION_DEPLOY_KEY: ${{ secrets.SSH_KEY }}
         run: |
@@ -27,12 +27,12 @@ jobs:
           echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
-      - name: Vuepress
+      - name: Deploy GitHub Pages 🚀
         run: |
           cd docs/.vuepress/dist
           git config --global user.name 'aliang'
           git config --global user.email 'aliang.link@foxmail.com'
           git init
           git add -A
-          git commit -m 'Update'
-          git push -f git@github.com:imaliang/alearn.git gh-pages
+          git commit -m 'GitHub + 服务器 双线部署 🚀'
+          git push -f git@github.com:imaliang/alearn.git master:gh-pages
