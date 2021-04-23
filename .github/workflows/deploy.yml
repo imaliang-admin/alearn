@@ -1,4 +1,4 @@
-name: alearn-deploy
+name: alearn-deploy 🚀
 
 on:
   push:
@@ -19,34 +19,40 @@ jobs:
           cp README.md docs/.vuepress/dist
           cp CNAME docs/.vuepress/dist
 
-      - name: Set Env 🔨
-        env:
-          ACTION_DEPLOY_KEY: ${{ secrets.SSH_KEY }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
+#      - name: Set Env 🔨
+#        env:
+#          ACTION_DEPLOY_KEY: ${{ secrets.SSH_KEY }}
+#        run: |
+#          mkdir -p ~/.ssh/
+#          echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+#          chmod 600 ~/.ssh/id_rsa
+#          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-      - name: Deploy To GitHub Pages 🚀
-        run: |
-          cd docs/.vuepress/dist
-          git config --global user.name 'aliang'
-          git config --global user.email 'aliang.link@foxmail.com'
-          git init
-          git add -A
-          git commit -m 'GitHub + 服务器 双线部署 🚀'
-          git push -f git@github.com:imaliang/alearn.git master:gh-pages
-          rm -rf ./docs/.vuepress/dist/.git
+#      - name: Deploy To GitHub Pages 🚀
+#        run: |
+#          cd docs/.vuepress/dist
+#          git config --global user.name 'aliang'
+#          git config --global user.email 'aliang.link@foxmail.com'
+#          git init
+#          git add -A
+#          git commit -m 'GitHub + 服务器 双线部署 🚀'
+#          git push -f git@github.com:imaliang/alearn.git master:gh-pages
+
 
       - name: Deploy To Tx 🚀
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        with:
-          server: ${{ secrets.FTP_IP }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./docs/.vuepress/dist/
-          server-dir: /alearn/
+        run: |
+          rm -rf docs/.vuepress/dist/.git
+          tar cvf alearn.tar docs/.vuepress/dist
+          ftp ${{ secrets.FTP_IP }}
+          ${{ secrets.FTP_USERNAME }}
+          ${{ secrets.FTP_PASSWORD }}
+          put 'alearn.tar'
 
-      - name: Print results ✏️
-        run: echo 'alearn deploy success 🎉 🎉 🎉'
+#      - name: Deploy To Tx 🚀
+#        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+#        with:
+#          server: ${{ secrets.FTP_IP }}
+#          username: ${{ secrets.FTP_USERNAME }}
+#          password: ${{ secrets.FTP_PASSWORD }}
+#          local-dir: docs/.vuepress/dist/
+#          server-dir: /alearn/
