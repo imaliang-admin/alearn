@@ -41,11 +41,12 @@ jobs:
 
       - name: Deploy To Tx 🚀
         run: |
-          rm -rf docs/.vuepress/dist/.git
-          tar cvf alearn.tar docs/.vuepress/dist
           ftp -v -n ${{ secrets.FTP_IP }} <<EOF
           user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}
-          put 'alearn.tar'
+          binary
+          cd docs/.vuepress/dist/
+          lcd  /alearn/
+          mput *
           bye
           EOF
 
