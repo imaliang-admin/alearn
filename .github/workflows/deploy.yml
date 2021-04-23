@@ -41,12 +41,10 @@ jobs:
 
       - name: Deploy To Tencent Server 🚀
         run: |
-          ftp -i -v -n ${{ secrets.FTP_IP }} <<EOF
-          user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}
-          binary
-          lcd docs/.vuepress/dist/
+          lftp ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_IP }}:21 <<EOF
+          lcd docs/.vuepress/
           cd  /alearn/
-          mput -r *
+          mirror -R dist
           bye
           EOF
 
