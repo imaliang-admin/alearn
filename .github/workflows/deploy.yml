@@ -2,7 +2,7 @@ name: Build and Deploy To gh-pages
 on:
   push:
     branches:
-      - dev
+      - dev22
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -23,4 +23,4 @@ jobs:
           branch: gh-pages
           folder: docs/.vuepress/dist
           ssh-key: ${{ secrets.SSH_KEY }}
-          commit-message: '自动化部署成功 🚀'
+          commit-message: 'GitHub + 服务器 双线部署 🚀'

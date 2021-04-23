@@ -13,8 +13,7 @@
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "deploy": "bash deploy.sh"
+    "docs:build": "vuepress build docs"
   },
   "devDependencies": {
     "@vuepress/plugin-active-header-links": "1.8.2",

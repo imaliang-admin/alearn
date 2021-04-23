@@ -4,7 +4,9 @@ module.exports = {
     title: "alearn",
     description: "一个Java方向的编程知识整理平台",
     head: [
-        ['meta', {name: 'keywords', content: 'alearn,aliang,java,springboot,springcloud,编程,知识整理'}]
+        ["link", {rel: "icon", href: `/favicon.ico`}],
+        ['meta', {name: 'keywords', content: 'alearn,aliang,java,springboot,springcloud,编程,知识整理'}],
+        ["script", { type: "text/javascript", src: "/js/baidutongji.js" }],
     ],
     base: "/",
     markdown: {
@@ -12,63 +14,26 @@ module.exports = {
     },
     theme: "antdocs",
     themeConfig: {
-        nav: [
-            {
-                text: "Java",
-                link: "/java/",
-            },
-            {
-                text: "线程",
-                link: "/thread/",
-            },
-            // {
-            //     text: "中间件",
-            //     link: "/middleware/",
-            // },
-            // {
-            //     text: "SpringBoot",
-            //     link: "/springboot/",
-            // },
-            // {
-            //     text: "SpringCloud",
-            //     link: "/springcloud/",
-            // },
-            {
-                text: "个人博客",
-                link: "https://www.aliang.link/",
-            },
-            {
-                text: "GitHub",
-                link: "https://github.com/imaliang/alearn",
-            },
-        ],
-        sidebar: {
-            "/java": [
-                "/java/",
-                // "/document/installation",
-                // {
-                //     title: "开始",
-                //     collapsable: true,
-                //     children: [
-                //         "/document/creating-project",
-                //         "/document/cli-service"
-                //     ],
-                // },
-            ],
-            "/thread": [
-                {
-                    title: "配置指南",
-                },
-            ],
-        },
-        lastUpdated: "上次编辑于 ",
+        nav: require("./config/nav"),
+        sidebar: require("./config/sidebar"),
+        lastUpdated: "最后更新于 ",
         smoothScroll: true,
-        repo: "https://github.com/imaliang/alearn",
-        repoLabel: "查看源码",
-        docsDir: "docs",
-        docsBranch: "master",
+        // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
+        repo: 'https://github.com/imaliang/alearn',
+        // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
+        // "GitHub"/"GitLab"/"Bitbucket" 其中之一，或是 "Source"。
+        repoLabel: 'github',
+        // 以下为可选的编辑链接选项
+        // 假如你的文档仓库和项目本身不在一个仓库：
+        docsRepo: 'https://github.com/imaliang/alearn',
+        // 假如文档不是放在仓库的根目录下：
+        docsDir: 'docs',
+        // 假如文档放在一个特定的分支下：
+        docsBranch: 'master',
+        // 默认是 false, 设置为 true 来启用
         editLinks: true,
-        editLinkText: "在 GitHub 上编辑此页",
+        // 默认为 "Edit this page"
+        editLinkText: '帮助我完善此页面！',
         locales: {
             // 键名是该语言所属的子路径
             // 作为特例，默认语言可以使用 '/' 作为其路径。
