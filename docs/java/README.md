@@ -37,7 +37,7 @@ alearn 是一个Java方向的编程知识整理平台，便于自己查询与学
         Merchant merchant = new Merchant();
         merchant.setId(merchantId);
         merchant.setLoginTime(DateUtils.getNowDate());
-        merchantService.update(merchant);
+        merchantService.update(merchant);//
     }
 ```
 
