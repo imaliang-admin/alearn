@@ -1,10 +1,12 @@
-name: Build and Deploy To gh-pages
+name: alearn-deploy
+
 on:
   push:
     branches:
-      - dev22
+      - master
+
 jobs:
-  build-and-deploy:
+  alearn-build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -17,10 +19,21 @@ jobs:
           cp README.md docs/.vuepress/dist
           cp CNAME docs/.vuepress/dist
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.1
-        with:
-          branch: gh-pages
-          folder: docs/.vuepress/dist
-          ssh-key: ${{ secrets.SSH_KEY }}
-          commit-message: 'GitHub + 服务器 双线部署 🚀'
+      - name: Set Env 🔧
+        env:
+          ACTION_DEPLOY_KEY: ${{ secrets.SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Deploy GitHub Pages 🚀
+        run: |
+          cd docs/.vuepress/dist
+          git config --global user.name 'aliang'
+          git config --global user.email 'aliang.link@foxmail.com'
+          git init
+          git add -A
+          git commit -m 'GitHub + 服务器 双线部署 🚀'
+          git push -f git@github.com:imaliang/alearn.git master:gh-pages
