@@ -37,6 +37,7 @@ jobs:
           git add -A
           git commit -m 'GitHub + 服务器 双线部署 🚀'
           git push -f git@github.com:imaliang/alearn.git master:gh-pages
+          rm -rf ./docs/.vuepress/dist/.git
 
       - name: Deploy To Tx 🚀
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
@@ -44,7 +45,7 @@ jobs:
           server: ${{ secrets.FTP_IP }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: /docs/.vuepress/dist/
+          local-dir: ./docs/.vuepress/dist/
           server-dir: /alearn/
 
       - name: Print results ✏️
