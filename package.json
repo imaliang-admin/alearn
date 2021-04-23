@@ -5,11 +5,6 @@
   "author": "aliang <aliang.link@foxmail.com> (https://github.com/imaliang)",
   "license": "MIT",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/imaliang/alearn.git"
-  },
-  "homepage": "https://learn.aliang.link",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
