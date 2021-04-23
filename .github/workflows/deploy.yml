@@ -45,6 +45,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: docs/.vuepress/dist/
-          server-dir: /alearn
-      - name: Print results
+          server-dir: /alearn/
+
+      - name: Print results ✏️
         run: echo 'alearn deploy success 🎉 🎉 🎉'
