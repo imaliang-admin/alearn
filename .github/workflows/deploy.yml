@@ -22,24 +22,25 @@ jobs:
           cp README.md docs/.vuepress/dist
           cp CNAME docs/.vuepress/dist
 
-#      - name: Set Env 🔨
-#        env:
-#          ACTION_DEPLOY_KEY: ${{ secrets.SSH_KEY }}
-#        run: |
-#          mkdir -p ~/.ssh/
-#          echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-#          chmod 600 ~/.ssh/id_rsa
-#          ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - name: Set Env 🔨
+        env:
+          ACTION_DEPLOY_KEY: ${{ secrets.GIT_SSH_RSA_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-#      - name: Deploy To GitHub Pages 🚀
-#        run: |
-#          cd docs/.vuepress/dist
-#          git config --global user.name 'aliang'
-#          git config --global user.email 'aliang.link@foxmail.com'
-#          git init
-#          git add -A
-#          git commit -m 'GitHub + 服务器 双线部署 🚀'
-#          git push -f git@github.com:imaliang/alearn.git master:gh-pages
+      - name: Deploy To GitHub Pages 🚀
+        run: |
+          cd docs/.vuepress/dist
+          git config --global user.name 'aliang'
+          git config --global user.email 'aliang.link@foxmail.com'
+          git init
+          git add -A
+          git commit -m 'GitHub + 服务器 双线部署 🚀'
+          git push -f git@github.com:imaliang/alearn.git master:gh-pages
+          git push -f root@${{ secrets.FTP_IP }}:/data/repo/alearn.git master:master
 
 
 #      - name: Deploy To Tencent Server 🚀
@@ -66,14 +67,14 @@ jobs:
 #          server-dir: /alearn/
 #          protocol: ftp
 
-      - name: Deploy To Tencent Server 🚀
-        uses: sebastianpopp/ftp-action@releases/v2
-        with:
-          host: ${{ secrets.FTP_IP }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          localDir: "docs/.vuepress/dist/"
-          remoteDir: "/alearn/"
+#      - name: Deploy To Tencent Server 🚀
+#        uses: sebastianpopp/ftp-action@releases/v2
+#        with:
+#          host: ${{ secrets.FTP_IP }}
+#          user: ${{ secrets.FTP_USERNAME }}
+#          password: ${{ secrets.FTP_PASSWORD }}
+#          localDir: "docs/.vuepress/dist/"
+#          remoteDir: "/alearn/"
 
 #ftp -v -n 81.70.241.155 <<EOF \n user github WMsASz2aFFsXyaLh \n EOF
 #ftp -v -n 81.70.241.155 <<EOF user github WMsASz2aFFsXyaLh \n EOF
