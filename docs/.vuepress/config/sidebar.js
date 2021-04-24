@@ -1,18 +1,20 @@
 module.exports = {
-    "/java": [
-        "/java/",
-        // {
-        //     title: "开始",
-        //     collapsable: true,
-        //     children: [
-        //         "/document/creating-project",
-        //         "/document/cli-service"
-        //     ],
-        // },
-    ],
-    "/thread": [
+    '/java/': [
+        '',
+        'add',
+        'add3',
+        'add2',
         {
-            title: "配置指南",
-        },
+            title: "添加2",
+            collapsable: true,
+            sidebarDepth: 1,
+            children: [
+                "add4",
+                "add5"
+            ],
+        }
     ],
-};
+    "/thread/": [
+        ''
+    ]
+}

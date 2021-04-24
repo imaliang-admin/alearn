@@ -6,7 +6,7 @@ module.exports = {
     head: [
         ["link", {rel: "icon", href: `/favicon.ico`}],
         ['meta', {name: 'keywords', content: 'alearn,aliang,java,springboot,springcloud,编程,知识整理'}],
-        ["script", { type: "text/javascript", src: "/js/baidutongji.js" }],
+        ["script", {type: "text/javascript", src: "/js/baidutongji.js"}]
     ],
     base: "/",
     markdown: {
@@ -16,6 +16,7 @@ module.exports = {
     themeConfig: {
         nav: require("./config/nav"),
         sidebar: require("./config/sidebar"),
+        // sidebar: 'auto',
         lastUpdated: "最后更新于 ",
         smoothScroll: true,
         // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
