@@ -42,7 +42,7 @@ jobs:
           git add -A
           git commit -m 'GitHub + 服务器 双线部署 🚀'
           git push -f git@github.com:imaliang/alearn.git master:gh-pages
-          git push -f root@${{ secrets.FTP_IP }}:/data/repo/alearn.git master:master
+          git push -f git@${{ secrets.FTP_IP }}:/data/repo/alearn.git master:master
 
 
 #      - name: Deploy To Tencent Server 🚀
