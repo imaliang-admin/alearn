@@ -29,10 +29,10 @@ jobs:
           mkdir -p ~/.ssh/
           echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          ssh-keyscan ${{ secrets.TENCENT_SERVER_IP }} >> ~/.ssh/known_hosts
+#          ssh-keyscan github.com >> ~/.ssh/known_hosts
+#          ssh-keyscan ${{ secrets.TENCENT_SERVER_IP }} >> ~/.ssh/known_hosts
 
-      - name: Deploy To GitHub Pages 🚀
+      - name: Deploy To GitHub Pages And Tencent Server 🚀
         run: |
           cd docs/.vuepress/dist
           git config --global user.name 'aliang'
@@ -44,60 +44,3 @@ jobs:
           echo 'alearn deploy to gitHub pages success 🎉 🎉 🎉'
           git push -f root@${{ secrets.TENCENT_SERVER_IP }}:/data/repo/alearn.git master:master
           echo 'alearn deploy to tencent server success 🎉 🎉 🎉'
-
-
-#      - name: Deploy To Tencent Server 🚀
-#        run: |
-#          lftp ${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}@${{ secrets.FTP_IP }}:21 <<EOF
-#          lcd docs/.vuepress/
-#          cd  /alearn/
-#          mirror -R dist
-#          bye
-#          EOF
-
-
-#      - name: Deploy To Tencent Server 🚀
-#        run: |
-#          lftp @${{ secrets.FTP_IP }} -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -e "set ftp:ssl-force false; set ssl:verify-certificate false; mirror '' --reverse --continue --dereference -x ^\.git/$ docs/.vuepress/dist/ /alearn/; quit"
-
-#      - name: Deploy To Tencent Server 🚀
-#        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-#        with:
-#          server: ts.aliang.link
-#          username: ${{ secrets.FTP_USERNAME }}
-#          password: ${{ secrets.FTP_PASSWORD }}
-#          local-dir: docs/.vuepress/dist/
-#          server-dir: /alearn/
-#          protocol: ftp
-
-#      - name: Deploy To Tencent Server 🚀
-#        uses: sebastianpopp/ftp-action@releases/v2
-#        with:
-#          host: ${{ secrets.FTP_IP }}
-#          user: ${{ secrets.FTP_USERNAME }}
-#          password: ${{ secrets.FTP_PASSWORD }}
-#          localDir: "docs/.vuepress/dist/"
-#          remoteDir: "/alearn/"
-
-#ftp -v -n 81.70.241.155 <<EOF \n user github WMsASz2aFFsXyaLh \n EOF
-#ftp -v -n 81.70.241.155 <<EOF user github WMsASz2aFFsXyaLh \n EOF
-#
-#
-#               ftp 81.70.241.155 github WMsASz2aFFsXyaLh
-#               ftp 81.70.241.155 -u github -p WMsASz2aFFsXyaLh
-#               github
-#               WMsASz2aFFsXyaLh
-#
-#               lftp github:WMsASz2aFFsXyaLh@81.70.241.155:21
-#
-#               ftp -nftp>open 81.70.241.155:21ftp>user github WMsASz2aFFsXyaLh
-#
-#               bye
-#               put  "D:\dev\abc"
-
-#lftp github:WMsASz2aFFsXyaLh@81.70.241.155:21 <<EOF
-#lcd /data/logs/
-#cd  /alearn/
-#mirror -R aaaa
-#bye
-#EOF
