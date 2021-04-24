@@ -25,11 +25,13 @@ jobs:
       - name: Set Env 🔨
         env:
           ACTION_DEPLOY_KEY: ${{ secrets.GIT_SSH_RSA_PRIVATE_KEY }}
+          TENCENT_SERVER_IP: ${{ secrets.FTP_IP }}
         run: |
           mkdir -p ~/.ssh/
           echo "$ACTION_DEPLOY_KEY" | tr -d '\r' > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
+          ssh-keyscan $TENCENT_SERVER_IP >> ~/.ssh/known_hosts
 
       - name: Deploy To GitHub Pages 🚀
         run: |
@@ -40,7 +42,7 @@ jobs:
           git add -A
           git commit -m 'GitHub + 服务器 双线部署 🚀'
           git push -f git@github.com:imaliang/alearn.git master:gh-pages
-#          git push -f root@${{ secrets.FTP_IP }}:/data/repo/alearn.git master:master
+          git push -f root@$TENCENT_SERVER_IP:/data/repo/alearn.git master:master
 
 
 #      - name: Deploy To Tencent Server 🚀
