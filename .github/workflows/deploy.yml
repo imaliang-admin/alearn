@@ -52,9 +52,9 @@ jobs:
 #          EOF
 
 
-      - name: Deploy To Tencent Server 🚀
-        run: |
-          lftp @${{ secrets.FTP_IP }} -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -e "set ftp:ssl-force false; set ssl:verify-certificate false; mirror '' --reverse --continue --dereference -x ^\.git/$ docs/.vuepress/dist/ /alearn/; quit"
+#      - name: Deploy To Tencent Server 🚀
+#        run: |
+#          lftp @${{ secrets.FTP_IP }} -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -e "set ftp:ssl-force false; set ssl:verify-certificate false; mirror '' --reverse --continue --dereference -x ^\.git/$ docs/.vuepress/dist/ /alearn/; quit"
 
 #      - name: Deploy To Tencent Server 🚀
 #        uses: SamKirkland/FTP-Deploy-Action@4.0.0
@@ -64,16 +64,16 @@ jobs:
 #          password: ${{ secrets.FTP_PASSWORD }}
 #          local-dir: docs/.vuepress/dist/
 #          server-dir: /alearn/
-#          protocol: ftps
+#          protocol: ftp
 
-#      - name: Deploy To Tencent Server 🚀
-#        uses: sebastianpopp/ftp-action@releases/v2
-#        with:
-#          host: ${{ secrets.FTP_IP }}
-#          user: ${{ secrets.FTP_USERNAME }}
-#          password: ${{ secrets.FTP_PASSWORD }}
-#          localDir: "docs/.vuepress/dist/"
-#          remoteDir: "/alearn/"
+      - name: Deploy To Tencent Server 🚀
+        uses: sebastianpopp/ftp-action@releases/v2
+        with:
+          host: ${{ secrets.FTP_IP }}
+          user: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          localDir: "docs/.vuepress/dist/"
+          remoteDir: "/alearn/"
 
 #ftp -v -n 81.70.241.155 <<EOF \n user github WMsASz2aFFsXyaLh \n EOF
 #ftp -v -n 81.70.241.155 <<EOF user github WMsASz2aFFsXyaLh \n EOF
